@@ -1,0 +1,36 @@
+#!/bin/sh
+#Install Nginx on Linux based distributions
+#Description: Install Nginx web server and reverse proxy on Ubuntu 
+#Author: James Alaniz
+#Date: 02/10/2018	
+
+#Installation steps taken from DigitalOcean.com
+
+# run an update to make sure we have the latest packages installed
+sudo apt update
+
+#install nginx
+sudo apt install nginx
+
+# Display the ufw app list so we can use what's there before we muck with it
+echo "Displaying current ufw app list before adding nginx rules, regardless if they exist..."
+sudo ufw app list
+
+DEFAULT_NGINX_RULE = 'Nginx Full'
+
+# Add nginx firewall rule
+sudo ufw allow $DEFAULT_NGINX_RULE
+
+# Display new ufw status after adding the nginx rule above
+sudo ufw status
+
+# Display system control status of nginx service
+systemctl status nginx
+
+
+DEFAULT_NETWORK = "eth0"
+
+# Display ip address so script caller can test nginx if they need the raw ip address
+# Note: Consider making this a passable argument in the future instead of just hard-coding eth0?
+echo "Displaying all ip addresses from $DEFAULT_NETWORK"
+ip addr show $DEFAULT_NETWORK | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
