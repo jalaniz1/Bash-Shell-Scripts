@@ -19,13 +19,10 @@ sudo ufw app list
 DEFAULT_NGINX_RULE='Nginx Full'
 
 # Add nginx firewall rule
-sudo ufw allow $DEFAULT_NGINX_RULE
+sudo ufw allow "$DEFAULT_NGINX_RULE"
 
 # Display new ufw status after adding the nginx rule above
 sudo ufw status
-
-# Display system control status of nginx service
-systemctl status nginx
 
 
 DEFAULT_NETWORK="eth0"
@@ -33,4 +30,7 @@ DEFAULT_NETWORK="eth0"
 # Display ip address so script caller can test nginx if they need the raw ip address
 # Note: Consider making this a passable argument in the future instead of just hard-coding eth0?
 echo "Displaying all ip addresses from $DEFAULT_NETWORK"
-ip addr show $DEFAULT_NETWORK | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+ip addr show "$DEFAULT_NETWORK" | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'
+
+# Display system control status of nginx service
+systemctl status nginx
