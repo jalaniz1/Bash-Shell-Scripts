@@ -16,7 +16,7 @@ sudo apt install nginx
 echo "Displaying current ufw app list before adding nginx rules, regardless if they exist..."
 sudo ufw app list
 
-DEFAULT_NGINX_RULE = 'Nginx Full'
+DEFAULT_NGINX_RULE='Nginx Full'
 
 # Add nginx firewall rule
 sudo ufw allow $DEFAULT_NGINX_RULE
@@ -28,7 +28,7 @@ sudo ufw status
 systemctl status nginx
 
 
-DEFAULT_NETWORK = "eth0"
+DEFAULT_NETWORK="eth0"
 
 # Display ip address so script caller can test nginx if they need the raw ip address
 # Note: Consider making this a passable argument in the future instead of just hard-coding eth0?
