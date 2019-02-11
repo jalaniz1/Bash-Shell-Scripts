@@ -1,0 +1,15 @@
+
+#!/bin/sh
+#Add User With Admin Privileges
+#Description: Will add admin privilges for the  passed in user 
+#Author: James Alaniz
+#Date: 02/10/2019
+
+#Add User
+adduser $@
+
+#Give admin privileges for a new user
+usermod -aG sudo $@
+
+#Assuming SSH auth is enabled, provide the pre-existing SSH key
+rsync --archive --chown=$@:$@ ~/.ssh /home/$@
